@@ -152,7 +152,7 @@ export default function HomePage() {
             <h1 className="font-serif font-bold text-4xl md:text-6xl lg:text-7xl text-foreground mb-6">
               Discover Premium Sustainable Products
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-md md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Shop our curated collection of eco-friendly, high-quality products
               designed for style and sustainability.
             </p>

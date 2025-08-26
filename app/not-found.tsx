@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 
-const NotFound = () => {
+export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 px-4">
       {/* Icon */}
@@ -24,13 +24,9 @@ const NotFound = () => {
       </p>
 
       {/* Button */}
-      <Link href="/" passHref>
-        <Button className="px-6 py-2 rounded-2xl shadow-md">
-          Go Back Home
-        </Button>
-      </Link>
+      <Button asChild className="px-6 py-2 rounded-2xl shadow-md">
+        <Link href="/">Go Back Home</Link>
+      </Button>
     </div>
   );
-};
-
-export default NotFound;
+}
