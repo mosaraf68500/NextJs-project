@@ -1,17 +1,47 @@
-import type React from "react"
-import Link from "next/link"
-import { ShoppingCart, Package, Plus, BarChart3, Settings, Users } from "lucide-react"
-import { getServerSession } from "next-auth"
-import { authOptions } from "@/lib/auth"
-import { UserNav } from "@/components/user-nav"
-import { redirect } from "next/navigation"
+"use client";
 
-export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions)
+import React, { useEffect } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  ShoppingCart,
+  Package,
+  Plus,
+  BarChart3,
+  Settings,
+  Users,
+} from "lucide-react";
+import { useSession } from "next-auth/react";
+import { UserNav } from "@/components/user-nav";
+
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const { data: session, status } = useSession();
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Redirect if no session (loading will be handled as well)
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/login");
+    }
+  }, [status, router]);
+
+  // While loading session, you can return null or a loading state
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
 
   if (!session) {
-    redirect("/login")
+    return null; // or loading spinner, because redirect happens in useEffect
   }
+
+  const navItems = [
+    { href: "/dashboard", label: "Overview", icon: BarChart3 },
+    { href: "/dashboard/add-product", label: "Add Product", icon: Plus },
+    { href: "/dashboard/products", label: "Manage Products", icon: Package },
+    { href: "/dashboard/users", label: "Users", icon: Users },
+    { href: "/dashboard/settings", label: "Settings", icon: Settings },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -48,41 +78,23 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
             <h2 className="font-serif font-semibold text-lg mb-6">Admin Panel</h2>
             <nav className="space-y-2">
-              <Link
-                href="/dashboard"
-                className="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <BarChart3 className="h-4 w-4" />
-                <span>Overview</span>
-              </Link>
-              <Link
-                href="/dashboard/add-product"
-                className="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium bg-primary text-primary-foreground"
-              >
-                <Plus className="h-4 w-4" />
-                <span>Add Product</span>
-              </Link>
-              <Link
-                href="/dashboard/products"
-                className="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <Package className="h-4 w-4" />
-                <span>Manage Products</span>
-              </Link>
-              <Link
-                href="/dashboard/users"
-                className="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <Users className="h-4 w-4" />
-                <span>Users</span>
-              </Link>
-              <Link
-                href="/dashboard/settings"
-                className="flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-              >
-                <Settings className="h-4 w-4" />
-                <span>Settings</span>
-              </Link>
+              {navItems.map(({ href, label, icon: Icon }) => {
+                const isActive = pathname === href;
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className={`flex items-center space-x-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-foreground bg-secondary"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    <span>{label}</span>
+                  </Link>
+                );
+              })}
             </nav>
           </div>
         </aside>
@@ -91,5 +103,5 @@ export default async function DashboardLayout({ children }: { children: React.Re
         <main className="flex-1 p-8">{children}</main>
       </div>
     </div>
-  )
+  );
 }

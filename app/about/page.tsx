@@ -1,11 +1,68 @@
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import Link from "next/link"
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function AboutPage() {
+
+
+  // Set initial countdown time in seconds (e.g., 1 hour = 3600 seconds)
+  const [timeLeft, setTimeLeft] = useState(3600);
+
+  useEffect(() => {
+    if (timeLeft === 0) return;
+
+    const timerId = setInterval(() => {
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [timeLeft]);
+
+  // Format time as HH:MM:SS
+  const formatTime = (seconds) => {
+    const h = Math.floor(seconds / 3600)
+      .toString()
+      .padStart(2, "0");
+    const m = Math.floor((seconds % 3600) / 60)
+      .toString()
+      .padStart(2, "0");
+    const s = (seconds % 60).toString().padStart(2, "0");
+    return `${h}:${m}:${s}`;
+  };
+
+  
   return (
     <div className="min-h-screen bg-background">
+      <section
+        className="relative bg-cover bg-center bg-no-repeat h-[60vh] flex items-center justify-center"
+        style={{
+          backgroundImage:
+            "url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f')",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative text-center text-white z-10 px-6">
+          <h1 className="text-3xl md:text-5xl font-extrabold tracking-wide mb-4">
+            Contact
+          </h1>
+          <div className="flex justify-center items-center space-x-2 text-lg">
+            <Link
+              href="/" // <-- use href instead of to
+              className="hover:underline hover:text-[#0AB99D] transition"
+            >
+              Home
+            </Link>
+            <span>||</span>
+            <Link href="" className="text-[#0AB99D] font-semibold">
+              Contact
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* Hero Section */}
       <section className="relative py-20 px-4 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-4xl mx-auto text-center">
@@ -17,8 +74,9 @@ export default function AboutPage() {
             <span className="text-primary block">For Everyone</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            We're passionate about bringing cutting-edge technology to your fingertips. From smartphones to smart homes,
-            we curate the best products for modern living.
+            We're passionate about bringing cutting-edge technology to your
+            fingertips. From smartphones to smart homes, we curate the best
+            products for modern living.
           </p>
         </div>
       </section>
@@ -28,15 +86,19 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Our Story</h2>
+              <h2 className="text-3xl font-bold text-foreground mb-6">
+                Our Story
+              </h2>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Founded in 2020, TechStore began as a small startup with a big vision: to make premium technology
-                accessible to everyone. What started as a passion project has grown into a trusted destination for tech
-                enthusiasts and everyday users alike.
+                Founded in 2020, TechStore began as a small startup with a big
+                vision: to make premium technology accessible to everyone. What
+                started as a passion project has grown into a trusted
+                destination for tech enthusiasts and everyday users alike.
               </p>
               <p className="text-muted-foreground mb-6 leading-relaxed">
-                We believe technology should enhance your life, not complicate it. That's why we carefully select each
-                product in our catalog, ensuring quality, innovation, and value in everything we offer.
+                We believe technology should enhance your life, not complicate
+                it. That's why we carefully select each product in our catalog,
+                ensuring quality, innovation, and value in everything we offer.
               </p>
               <Button asChild>
                 <Link href="/products">Explore Our Products</Link>
@@ -44,7 +106,7 @@ export default function AboutPage() {
             </div>
             <div className="relative">
               <img
-                src="/placeholder.svg?height=400&width=500"
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
                 alt="Our workspace"
                 className="rounded-lg shadow-lg w-full"
               />
@@ -57,9 +119,12 @@ export default function AboutPage() {
       <section className="py-16 px-4 bg-muted/30">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Our Values</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Our Values
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              These core principles guide everything we do, from product selection to customer service.
+              These core principles guide everything we do, from product
+              selection to customer service.
             </p>
           </div>
 
@@ -67,7 +132,12 @@ export default function AboutPage() {
             <Card className="text-center p-6">
               <CardContent className="pt-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-6 h-6 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -78,8 +148,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Quality First</h3>
                 <p className="text-muted-foreground">
-                  We rigorously test and verify every product to ensure it meets our high standards for performance and
-                  reliability.
+                  We rigorously test and verify every product to ensure it meets
+                  our high standards for performance and reliability.
                 </p>
               </CardContent>
             </Card>
@@ -87,13 +157,24 @@ export default function AboutPage() {
             <Card className="text-center p-6">
               <CardContent className="pt-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <svg
+                    className="w-6 h-6 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Innovation</h3>
                 <p className="text-muted-foreground">
-                  We stay ahead of technology trends to bring you the latest innovations that will shape the future.
+                  We stay ahead of technology trends to bring you the latest
+                  innovations that will shape the future.
                 </p>
               </CardContent>
             </Card>
@@ -101,7 +182,12 @@ export default function AboutPage() {
             <Card className="text-center p-6">
               <CardContent className="pt-6">
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className="w-6 h-6 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
@@ -112,8 +198,8 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Customer Focus</h3>
                 <p className="text-muted-foreground">
-                  Your satisfaction is our priority. We provide exceptional support and service at every step of your
-                  journey.
+                  Your satisfaction is our priority. We provide exceptional
+                  support and service at every step of your journey.
                 </p>
               </CardContent>
             </Card>
@@ -125,9 +211,12 @@ export default function AboutPage() {
       <section className="py-16 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">Meet Our Team</h2>
+            <h2 className="text-3xl font-bold text-foreground mb-4">
+              Meet Our Team
+            </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              The passionate individuals behind TechStore, working together to bring you the best technology experience.
+              The passionate individuals behind TechStore, working together to
+              bring you the best technology experience.
             </p>
           </div>
 
@@ -135,14 +224,15 @@ export default function AboutPage() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <img
-                  src="/placeholder.svg?height=120&width=120"
+                  src="https://randomuser.me/api/portraits/women/44.jpg"
                   alt="Sarah Johnson"
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-xl font-semibold mb-1">Sarah Johnson</h3>
                 <p className="text-primary font-medium mb-3">CEO & Founder</p>
                 <p className="text-muted-foreground text-sm">
-                  Former tech executive with 15+ years of experience in product development and innovation.
+                  Former tech executive with 15+ years of experience in product
+                  development and innovation.
                 </p>
               </CardContent>
             </Card>
@@ -150,14 +240,15 @@ export default function AboutPage() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <img
-                  src="/placeholder.svg?height=120&width=120"
+                  src="https://randomuser.me/api/portraits/men/45.jpg"
                   alt="Michael Chen"
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-xl font-semibold mb-1">Michael Chen</h3>
                 <p className="text-primary font-medium mb-3">CTO</p>
                 <p className="text-muted-foreground text-sm">
-                  Technology visionary focused on building scalable platforms and exceptional user experiences.
+                  Technology visionary focused on building scalable platforms
+                  and exceptional user experiences.
                 </p>
               </CardContent>
             </Card>
@@ -165,14 +256,17 @@ export default function AboutPage() {
             <Card className="text-center">
               <CardContent className="pt-6">
                 <img
-                  src="/placeholder.svg?height=120&width=120"
+                  src="https://randomuser.me/api/portraits/women/65.jpg"
                   alt="Emily Rodriguez"
                   className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
                 />
                 <h3 className="text-xl font-semibold mb-1">Emily Rodriguez</h3>
-                <p className="text-primary font-medium mb-3">Head of Marketing</p>
+                <p className="text-primary font-medium mb-3">
+                  Head of Marketing
+                </p>
                 <p className="text-muted-foreground text-sm">
-                  Creative strategist passionate about connecting people with technology that improves their lives.
+                  Creative strategist passionate about connecting people with
+                  technology that improves their lives.
                 </p>
               </CardContent>
             </Card>
@@ -181,36 +275,66 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 px-4 bg-primary text-primary-foreground">
+      <section className="py-16 px-4 bg-gradient-to-r from-gray-800 via-gray-600 to-gray-800 text-white">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid md:grid-cols-5 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold mb-2">50K+</div>
-              <div className="text-primary-foreground/80">Happy Customers</div>
+              <div className="text-white/80">Happy Customers</div>
             </div>
             <div>
               <div className="text-4xl font-bold mb-2">1000+</div>
-              <div className="text-primary-foreground/80">Products</div>
+              <div className="text-white/80">Products</div>
             </div>
             <div>
               <div className="text-4xl font-bold mb-2">99.9%</div>
-              <div className="text-primary-foreground/80">Uptime</div>
+              <div className="text-white/80">Uptime</div>
             </div>
             <div>
               <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-primary-foreground/80">Support</div>
+              <div className="text-white/80">Support</div>
+            </div>
+            {/* Countdown timer block */}
+            <div>
+              <div
+                className="text-4xl font-mono font-bold mb-2"
+                style={{
+                  animation: "pulse 2s infinite",
+                  color: "#FFD700", // gold color
+                  textShadow: "0 0 8px #FFD700",
+                }}
+              >
+                {formatTime(timeLeft)}
+              </div>
+              <div className="text-white/80">Limited Time Offer</div>
             </div>
           </div>
         </div>
+
+        <style jsx>{`
+          @keyframes pulse {
+            0%,
+            100% {
+              opacity: 1;
+              transform: scale(1);
+            }
+            50% {
+              opacity: 0.7;
+              transform: scale(1.1);
+            }
+          }
+        `}</style>
       </section>
 
       {/* CTA Section */}
       <section className="py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-foreground mb-4">Ready to Explore?</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-4">
+            Ready to Explore?
+          </h2>
           <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Discover our carefully curated collection of premium technology products and find the perfect solution for
-            your needs.
+            Discover our carefully curated collection of premium technology
+            products and find the perfect solution for your needs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
@@ -223,5 +347,5 @@ export default function AboutPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

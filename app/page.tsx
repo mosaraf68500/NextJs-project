@@ -29,7 +29,7 @@ export default function HomePage() {
       description: "High-quality sound with noise cancellation",
       price: 299.99,
       rating: 4.8,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     },
     {
       id: 2,
@@ -37,7 +37,7 @@ export default function HomePage() {
       description: "Track your health and fitness goals",
       price: 199.99,
       rating: 4.6,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     },
     {
       id: 3,
@@ -45,7 +45,7 @@ export default function HomePage() {
       description: "Sustainable and stylish hydration",
       price: 29.99,
       rating: 4.9,
-      image: "/placeholder.svg?height=200&width=300",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     },
   ];
 
@@ -57,17 +57,17 @@ export default function HomePage() {
     },
     {
       name: "Fashion",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
       href: "/products/fashion",
     },
     {
       name: "Home & Living",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
       href: "/products/home",
     },
     {
       name: "Eco-Friendly",
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
       href: "/products/eco",
     },
   ];

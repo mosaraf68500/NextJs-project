@@ -21,7 +21,7 @@ export const products: Product[] = [
     price: 299.99,
     rating: 4.8,
     reviews: 1247,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Electronics",
     inStock: true,
     features: [
@@ -48,7 +48,7 @@ export const products: Product[] = [
     price: 199.99,
     rating: 4.6,
     reviews: 892,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Wearables",
     inStock: true,
     features: [
@@ -75,7 +75,7 @@ export const products: Product[] = [
     price: 29.99,
     rating: 4.9,
     reviews: 2156,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Lifestyle",
     inStock: true,
     features: [
@@ -102,7 +102,7 @@ export const products: Product[] = [
     price: 449.99,
     rating: 4.7,
     reviews: 634,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Furniture",
     inStock: true,
     features: ["Lumbar support system", "Height adjustable", "Breathable mesh back", "360° swivel", "5-year warranty"],
@@ -123,7 +123,7 @@ export const products: Product[] = [
     price: 39.99,
     rating: 4.4,
     reviews: 445,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Electronics",
     inStock: false,
     features: ["Fast charging (10W)", "Qi-compatible", "LED indicator", "Non-slip surface", "Overcharge protection"],
@@ -144,7 +144,7 @@ export const products: Product[] = [
     price: 24.99,
     rating: 4.5,
     reviews: 1089,
-    image: "/placeholder.svg?height=400&width=400",
+    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
     category: "Clothing",
     inStock: true,
     features: [
