@@ -105,7 +105,7 @@ export default function Categories() {
         <div className="absolute inset-0 bg-black/50"></div>
         <div className="relative text-center text-white z-10 px-6">
           <h1 className="text-3xl md:text-5xl font-extrabold tracking-wide mb-4">
-            Contact
+            Categories
           </h1>
           <div className="flex justify-center items-center space-x-2 text-lg">
             <Link
@@ -116,7 +116,7 @@ export default function Categories() {
             </Link>
             <span>||</span>
             <Link href="" className="text-[#0AB99D] font-semibold">
-              Contact
+              Categories
             </Link>
           </div>
         </div>

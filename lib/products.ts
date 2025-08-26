@@ -21,7 +21,7 @@ export const products: Product[] = [
     price: 299.99,
     rating: 4.8,
     reviews: 1247,
-    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
+    image: "https://i.ibb.co.com/CgPW7mn/download-3.jpg",
     category: "Electronics",
     inStock: true,
     features: [
@@ -48,7 +48,7 @@ export const products: Product[] = [
     price: 199.99,
     rating: 4.6,
     reviews: 892,
-    image: "https://i.ibb.co/MyPz8Xq4/download.jpg",
+    image: "https://i.ibb.co.com/CgPW7mn/download-3.jpg",
     category: "Wearables",
     inStock: true,
     features: [
